@@ -3,5 +3,4 @@ name: deployment
 description: A Minimal Helm chart for Kubernetes
 version: 1.0.0
 appVersion: "1.16.0"
-teams: 
-  - team-demo
+icon: https://docs.crossplane.io/android-chrome-192x192.png
