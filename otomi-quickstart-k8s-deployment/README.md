@@ -16,6 +16,14 @@ The Developer Catalog is a library of curated Helm charts to create Kubernetes r
 
 ## Parameters
 
+### Code Blocks
+    args:
+        - --config
+        - /etc/prometheus/config/prometheus.yaml
+        - --storage.tsdb.path
+        - /data
+        - --web.console.libraries=/etc/prometheus/console_libraries
+        - --web.console.templates=/etc/prometheus/consoles
 ### Required parameters
 
 | Name             | Description                              | Value |
