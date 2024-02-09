@@ -60,7 +60,7 @@ serviceAccount:
   ##
   imagePullSecrets: []
 
-## Pod liveness probe.
+## Container liveness probe.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
 livenessProbe: {}
@@ -68,7 +68,7 @@ livenessProbe: {}
   #   path: /
   #   port: http1
 
-## Pod readiness probe.
+## Container readiness probe.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
 readinessProbe:
@@ -102,13 +102,36 @@ containerPorts:
 ## @param resources.limits The resources limits for the container
 ## @param resources.requests The requested resources for the container
 ##
-resources:
-  limits:
-     cpu: 500m
-     memory: 1Gi
-  requests:
-     cpu: 200m
-     memory: 32Mi
+resources: {}
+  # limits:
+  #    cpu: 500m
+  #    memory: 1Gi
+  # requests:
+  #    cpu: 200m
+  #    memory: 32Mi
+
+## @param VolumeMounts A list of volume mounts to be added to the container
+##
+volumeMounts: []
+  # - name: my-secret
+  #   mountPath: /secrets
+  #   readOnly: true
+  # - mountPath: /tmp
+  #   name: tmp
+  # - name: config-volume
+  #   mountPath: /etc/config
+
+## @param Volumes A list of volumes to be added to the pod
+##
+volumes: []
+  # - name: my-secret
+  #   secret:
+  #     secretName: my-secret
+  # - name: tmp
+  #   emptyDir: {}
+  # - name: config-volume
+  #   configMap:
+  #     name: special-config
 
 ## @param nodeSelector Node labels for pod assignment.
 ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
@@ -139,16 +162,6 @@ args: []
   # - --metric-name=custom_prometheus
   # - --metric-value=40
   # - --port=8080
-
-## Mount files and secrets to a container.
-## @param files Mount files
-## @param secretMounts Mount secrets
-##
-files: []
-  # /etc/nginx/nginx.conf: |
-  #   this is my nginx config
-secretMounts: []
-  # /some/secret/conf: conf-secret-name
 
 ## @param ingress Configure service exposure. Default is public
 ## If set to 'cluster', the label 'serving.deployment.dev/visibility: cluster-local' is added
